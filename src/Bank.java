@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Bank {
     public static long genAccNo() {
@@ -21,11 +22,12 @@ public class Bank {
 
  public static void printAccountDeatails(){
      for (Account account : customers){
-         System.out.println();
+
          System.out.println(account.getAccountNumber());
          System.out.println(account.getAccountHolder());
          System.out.println(account.getAccountType());
          System.out.println(account.getBalance());
+         System.out.println();
      }
  }
  public static boolean isAccountNumberExist(long AccounNumber){
@@ -42,17 +44,23 @@ public class Bank {
  }
 
  public static void createAccount(String accHolder, String accType, double balance){
- long genAccountNo = genAccNo();
- Account acc3 = new Account(genAccountNo,accHolder,accType,balance);
- customers.add(acc3);
 
+ if (balance > 0 && (Objects.equals(accType, "Savings") || Objects.equals(accType,"Current")) && !(accHolder.isEmpty() || accHolder.isBlank())){
+         long genAccountNo = genAccNo();
+         Account acc = new Account(genAccountNo, accHolder, accType, balance);
+         customers.add(acc);
+     System.out.println("Account created Successfully");
+     System.out.println(acc.getAccountHolder());
+     System.out.println(acc.getAccountType());
+     System.out.println(acc.getAccountNumber());
+     System.out.println(acc.getBalance());
+ }
+ else {
+     System.out.println("please Enter  a valid Input");
+ }
  }
     public static void main(String[] args) {
-    Account acc1 = new Account(59297344748L,"Abdur Rajjak","savings",79999);
-    Account acc2 = new Account(591712749383L,"touhid kayal","current", 9999);
-    customers.add(acc1);
-    customers.add(acc2);
-     createAccount("Abdur Rajjak","Savings",12999);
-        printAccountDeatails();
+     createAccount("Abc","Savings",19);
+
     }
   }
