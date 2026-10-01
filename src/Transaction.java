@@ -33,11 +33,14 @@ public class Transaction{
                 500,
                 "cash withdrawl"
                 );
+
        System.out.println("Transaction id : "+t1.id);
        System.out.println("Transaction Type : "+t1.type);
        System.out.println("Transaction Amount : "+t1.amount);
        System.out.println("Description : "+t1.description);
+
    }
+
 
 
 }
